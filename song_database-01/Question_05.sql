@@ -2,12 +2,6 @@
 
 USE songs;
 
-SELECT * FROM artist;
-
-SELECT * FROM album;
-
-SELECT * FROM song;
-
 WITH songs_per_album AS
 (
 	SELECT album_id, COUNT(1) AS number_of_songs
@@ -30,6 +24,6 @@ songs_per_artist AS
 	GROUP BY artist_name
 	ORDER BY `#songs` DESC
 )
-SELECT artist_name
+SELECT artist_name, `#songs`
 FROM songs_per_artist
 WHERE `#songs` = (SELECT MAX(`#songs`) FROM songs_per_artist);
