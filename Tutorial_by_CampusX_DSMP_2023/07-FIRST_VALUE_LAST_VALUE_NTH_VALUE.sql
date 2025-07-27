@@ -1,0 +1,21 @@
+-- FIRST_VALUE()
+
+USE campusx;
+
+SELECT *,
+	FIRST_VALUE(name) OVER(ORDER BY marks DESC) # name of the overall topper
+FROM marks;
+
+-- LAST_VALUE()
+
+SELECT *,
+	LAST_VALUE(marks) OVER(PARTITION BY branch ORDER BY marks DESC
+							ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS lowest_marks
+FROM marks;
+
+-- NTH_VALUE()
+
+SELECT *,
+	NTH_VALUE(name, 2) OVER(PARTITION BY branch ORDER BY marks DESC
+							ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS second_topper
+FROM marks;
