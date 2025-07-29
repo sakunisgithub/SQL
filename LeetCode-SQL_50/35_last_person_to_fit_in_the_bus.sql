@@ -1,0 +1,8 @@
+SELECT DISTINCT LAST_VALUE(person_name) OVER(ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS person_name
+FROM(
+    SELECT *,
+        SUM(weight) OVER(ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_weight
+        FROM Queue
+        ORDER BY turn
+) AS t
+WHERE t.cumulative_weight <= 1000;
