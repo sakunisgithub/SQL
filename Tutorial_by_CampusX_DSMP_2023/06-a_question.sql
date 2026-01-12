@@ -1,4 +1,4 @@
--- Question : Find top 2 msot paying customers of each month.
+-- Question : Find top 2 most paying customers of each month.
 
 USE zomato;
 
